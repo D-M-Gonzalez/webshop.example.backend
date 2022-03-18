@@ -1,0 +1,29 @@
+###
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+    "name": "Ford Mondeo",
+    "description": "un auto viejo",
+    "image_url": "algo",
+    "price": 10000,
+    "brand": {
+        "brand_name": "Ford",
+        "logo_url": "algo mas"
+    }
+
+}
+
+###
+GET http://localhost:3000/api/products
+
+###
+DELETE http://localhost:3000/api/products/62349c81c256affaaa42e9bc
+
+###
+PUT http://localhost:3000/api/products/62349f56ad19d8799c2b57ff
+Content-Type: application/json
+
+{
+    "name": "Ford Focus"
+}

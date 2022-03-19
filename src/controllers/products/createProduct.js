@@ -1,7 +1,7 @@
-import Product from "../models/Product"
+import Product from "../../models/Product"
+import Brand from "../../models/Brand"
 
 export const createProduct = async (req,res)=>{
-
     if(!req.body.name || !req.body.price || !req.body.brand.brand_name){
         return res.status(400).send({message: 'Content cannot be empty'})
     }
@@ -9,14 +9,14 @@ export const createProduct = async (req,res)=>{
     try {
         const newProduct = new Product({
             name: req.body.name,
+            category: req.body.category,
             description: req.body.description,
             image_url: req.body.image_url ? req.body.image_url : "",
             price: req.body.price,
-            child: {
-                brand_name: req.body.brand.brand_name,
-                logo_url: req.body.brand.logo_url
-            }
         })
+        const foundBrand = await Brand.exists({brand_name: req.body.brand.brand_name})
+        const addBrand = await Brand.findById(foundBrand);
+        newProduct.brand = addBrand;
         const productSaved = await newProduct.save();
         res.json(productSaved)
     } catch(error) {

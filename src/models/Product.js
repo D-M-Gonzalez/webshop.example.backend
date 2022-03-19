@@ -1,12 +1,30 @@
 import {Schema,model} from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
-import brandsSchema from "./Brand";
+
+const brandsSchema = new Schema({
+    brand_name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    logo_url: {
+        type: String,
+        required: true,    
+    }
+},{
+    versionKey: false,
+    timestamps: true
+})
 
 const productsSchema = new Schema({
     name: {
         type: String,
         required: true,
         trim: true,
+    },
+    category: {
+        type: String,
+        required: true,
     },
     description: {
         type: String,
@@ -20,7 +38,7 @@ const productsSchema = new Schema({
         type: Number,
         required: true,
     },
-    child: brandsSchema
+    brand: brandsSchema
 },{
     versionKey: false,
     timestamps: true

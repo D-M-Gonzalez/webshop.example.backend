@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { findAllProducts } from "../controllers/findAllProducts";
-import { createProduct } from "../controllers/createProduct";
-import { deleteProduct } from "../controllers/deleteProduct";
-import { updateProduct } from "../controllers/updateProduct";
+import { findAllProducts } from "../controllers/products/findAllProducts";
+import { createProduct } from "../controllers/products/createProduct";
+import { deleteProduct } from "../controllers/products/deleteProduct";
+import { updateProduct } from "../controllers/products/updateProduct";
+import { findProductById } from "../controllers/products/findProductById";
 
 const router = Router();
 
@@ -10,8 +11,10 @@ router.get('/', findAllProducts)
 
 router.post('/',createProduct)
 
-router.delete('/:id',deleteProduct)
+router.put('/',updateProduct)
 
-router.put('/:id',updateProduct)
+router.get('/:id',findProductById)
+
+router.delete('/:id',deleteProduct)
 
 export default router;

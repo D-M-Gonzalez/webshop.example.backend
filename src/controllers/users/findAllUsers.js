@@ -1,11 +1,11 @@
-import Product from "../models/Product"
-import { getPagination } from "../libs/getPagination";
+import User from "../../models/User"
+import { getPagination } from "../../libs/getPagination";
 
-export const findAllProducts = async(req,res)=>{
+export const findAllUsers = async(req,res)=>{
     try {
         const {size,page} = req.query;
         const {limit,offset} = getPagination(page,size);
-        const list = await Product.paginate({},{offset,limit});
+        const list = await User.paginate({},{offset,limit});
         res.json(list)
     } catch(error) {
         res.status(500).json({

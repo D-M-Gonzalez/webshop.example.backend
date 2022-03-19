@@ -5,11 +5,11 @@ const brandsSchema = new Schema({
     brand_name: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
     logo_url: {
         type: String,
-        trim: true,       
+        required: true,    
     }
 },{
     versionKey: false,
@@ -17,4 +17,4 @@ const brandsSchema = new Schema({
 })
 
 brandsSchema.plugin(mongoosePaginate);
-export default brandsSchema;
+export default model("brand",brandsSchema);

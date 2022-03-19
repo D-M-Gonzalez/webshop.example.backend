@@ -6,7 +6,7 @@
 
   "scripts": {
     "build": "babel src --out-dir dist",
-    "start": "node src/index.js",
+    "start": "node index.js",
     "dev": "nodemon --exec npm start"
   },
   "keywords": [],

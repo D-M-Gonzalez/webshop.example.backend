@@ -1,4 +1,4 @@
-import Brand from "../../models/Brand"
+import Brand from "../../models/brand"
 
 export const updateBrand = async(req,res)=>{
     try {

@@ -1,16 +1,25 @@
-import Product from "../../models/product"
-import Brand from "../../models/brand"
+import Product from "../../models/product";
+import ProductMessage from "../../messages/productMessages";
 
-export const deleteProduct = async(req,res)=>{
+//Controller used to delete a product
+export const deleteProduct = async (req, res) => {
+  const response = new ProductMessage("delete"); //message object with initial message delete
+  if (req.params.id) {
     try {
-        await Product.findByIdAndDelete(req.params.id)
-        res.json({
-            message: `Product were deleted successfully`
-        })
-    } catch(error) {
-        res.status(500).json({
-            message: error.message || 'Something went wrong'
-        })
+      const doc = await Product.findByIdAndDelete(req.params.id);
+      if (doc) {
+        response.setStatusMessage(200);
+        response.setData(doc);
+      } else {
+        response.setStatusMessage(404);
+      }
+    } catch (error) {
+      error.kind === "ObjectId"
+        ? response.setStatusMessage(400)
+        : response.setStatusMessage(500);
     }
-
-}
+  } else {
+    response.setStatusMessage(406);
+  }
+  res.json(response); //returns the entire object with the stored status and data
+};

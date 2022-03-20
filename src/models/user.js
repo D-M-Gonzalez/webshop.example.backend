@@ -1,6 +1,7 @@
 import {Schema,model} from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 
+//User schema and model definition
 const userSchema = new Schema({
     user_name: {
         type: String,

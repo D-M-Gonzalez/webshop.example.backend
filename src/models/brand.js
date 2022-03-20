@@ -1,6 +1,7 @@
 import {Schema,model} from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 
+//Brand schema and model definition
 const brandsSchema = new Schema({
     brand_name: {
         type: String,

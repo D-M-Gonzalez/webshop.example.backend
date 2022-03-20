@@ -1,15 +1,25 @@
-import Product from "../../models/product"
-import Brand from "../../models/brand"
+import Product from "../../models/product";
+import ProductMessage from "../../messages/productMessages";
 
-export const findProductById = async(req,res)=>{
+//Controller used to return a single product
+export const findProductById = async (req, res) => {
+  const response = new ProductMessage("locate"); //message object with initial message locate
+  if (req.params.id) {
     try {
-        const product = await Product.findById(req.params.id)
-        const brand = await Brand.findById(product.brand)
-        res.json(product + brand)
-    } catch(error) {
-        res.status(500).json({
-            message: error.message || 'Something went wrong'
-        })
+      const product = await Product.findById(req.params.id);
+      if (product) {
+        response.setStatusMessage(200);
+        response.setData(product);
+      } else {
+        response.setStatusMessage(404);
+      }
+    } catch (error) {
+      error.kind === "ObjectId" //returns different message for wrong id format and general server errors
+        ? response.setStatusMessage(400)
+        : response.setStatusMessage(500);
     }
-
-}
+  } else {
+    response.setStatusMessage(406);
+  }
+  res.json(response); //returns the entire object with the stored status and data
+};

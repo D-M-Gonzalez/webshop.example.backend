@@ -1,17 +1,17 @@
-# Front-end APP created for ITCrowd challenge
+# Back-end APP created for ITCrowd challenge
 
 https://webshop-example-backend.herokuapp.com/
 
 ## Intro
 
-    This APP was created to fullfil the objetives of the challenge. Done using React as main framework this app can handle all the basic communication with a server.
-    It has done with a basic layout, that has a fixed header/navigation bar, and a dynamic main container that changes when the user interacts. It's an SPA APP,
-    which does never forces the user to leave the main page, only using reloads to refresh data from DB.
-    The APP was done trying to use good practices and having SOLID principles in mind, using lastest version React Functional Components.
+    This APP was created to handle the Front-End APP requests. It can handle all CRUD functions done with a RESTful api perspective in mind. Done in Express.js
+    framework which allows for a quick creation of an api with Atlas MongoDB to avoid managing of a DB locally. All the endpoints are done based on what the 
+    front end needs, but doesn't allow for complex handling, just the basics to be able to view/update/create/delete things.
+    Used objects for the returns, which allow easy customization, good repeteability and do follow Good Practices.
 
 ## Resources
 
-- **Basic languages:** HTML/CSS/JavaScript
+- **Basic languages:** JavaScript
 
     Based both Front-end and Back-end in MERN stack.
 
@@ -70,6 +70,28 @@ https://webshop-example-backend.herokuapp.com/
 - **middleware:** Contains JWT middleware fucntion.
 - **models:** Contains APP models.
 - **routes:** Contains routing functions.
+
+## Endpoints
+
+    The APP can handle the following endpoints:
+    > /api/products/
+    To get and create products
+    > /api/products?id=&brand_name=
+    To update a specific product, using id and brand_name as query parameters
+    > /api/products/:id
+    To get a specific product or delete it
+    > /api/brands/
+    To get all the available brands and to create a new brand
+    > /api/brands/:id
+    To modify or delete a brand
+    > /api/users/
+    To get all the users or create a new one
+    > /api/users/:id
+    To modify or delete an user
+    > api/users/validate
+    To validate a client token
+    > api/users/login/user
+    To log-in an user, and if it's an admin, generate a token
 
 ## To-Do List
 

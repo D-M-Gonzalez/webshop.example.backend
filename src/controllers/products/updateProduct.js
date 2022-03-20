@@ -1,5 +1,5 @@
-import Product from "../../models/Product"
-import Brand from "../../models/Brand"
+import Product from "../../models/product"
+import Brand from "../../models/brand"
 
 export const updateProduct = async(req,res)=>{
     try {
